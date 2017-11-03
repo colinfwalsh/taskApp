@@ -11,7 +11,7 @@ import UIKit
 class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var taskCategory: [ListItem] = []
+    var taskArray: [ListItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,8 @@ class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //For testing purposes this will be set to an arbitrary value
+        //return taskCategory.count //ideally we want to use this
         return 10
     }
     
@@ -52,11 +54,10 @@ class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Will be used to pass data to tasks VC
         if segue.identifier == "showTasks" {
             let destinationVC = segue.destination as? TaskViewController
-            let cell = sender as! UICollectionViewCell
-            let indexPath = self.collectionView.indexPath(for: cell)
-            
+            print("\(String(describing: destinationVC)) is staged and ready to receive data")
         }
     }
     
