@@ -10,6 +10,8 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell {
 
+    @IBOutlet weak var categoryTitle: UILabel!
+    @IBOutlet weak var taskCount: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

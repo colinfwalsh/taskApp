@@ -12,17 +12,13 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
     
-    var taskModelArray: [ListModel] = []
+    let defaultItem = ListItem(taskTitle: "Task", priority: .high, daysToComplete: 5)
+    var taskArray: [ListItem] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let listItem = ListModel(task: "Task", priority: .high, daysToComplete: 5)
-        
-        for _ in 0..<15 {
-//            taskModelArray.append(listItem)
-        }
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -34,22 +30,22 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskModelArray.count
+        return taskArray.count
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            taskModelArray.remove(at: indexPath.row)
+            taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch taskModelArray.isEmpty {
+        switch taskArray.isEmpty {
         case false:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         
-            cell.textLabel?.text = taskModelArray[indexPath.row].task
+            cell.textLabel?.text = taskArray[indexPath.row].taskTitle
         
             return cell
         default:
