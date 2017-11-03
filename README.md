@@ -1,2 +1,5 @@
 
-Simple tutorial app for displaying tasks and data.  Messing with storyboards, xibs, collectionViews, and tableViews.
+# taskApp
+
+Simple app to understand collectionViews, tableViews, xibs and storyboards.
+
