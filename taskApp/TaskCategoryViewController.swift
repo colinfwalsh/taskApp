@@ -65,7 +65,7 @@ class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UI
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell else {return UICollectionViewCell()}
         
         cell.categoryTitle?.text = "Title"
-        cell.taskCount?.text = "0"
+        cell.taskCount?.text = "00"
  
         return cell
     }
