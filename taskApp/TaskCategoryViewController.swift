@@ -8,7 +8,13 @@
 
 import UIKit
 
-class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+protocol UpdateTaskDelegate {
+    func addItem(_ item: ListItem)
+}
+
+class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UpdateTaskDelegate {
+   
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var taskArray: [ListItem] = []
@@ -57,6 +63,7 @@ class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UI
         //Will be used to pass data to tasks VC
         if segue.identifier == "showTasks" {
             let destinationVC = segue.destination as? TaskViewController
+            destinationVC?.delegate = self
             print("\(String(describing: destinationVC)) is staged and ready to receive data")
         }
     }
@@ -65,9 +72,15 @@ class TaskCategoryViewController: UIViewController, UICollectionViewDelegate, UI
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell else {return UICollectionViewCell()}
         
         cell.categoryTitle?.text = "Title"
-        cell.taskCount?.text = "00"
+        cell.taskCount?.text = String(taskArray.count)
  
         return cell
+    }
+    
+    func addItem(_ item: ListItem) {
+        // Every cell will depend on the taskArray, so they should update their tasks whenever you add one...will change this
+        // later on
+        taskArray.append(item)
     }
     
     

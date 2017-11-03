@@ -14,7 +14,7 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let defaultItem = ListItem(taskTitle: "Task", priority: .high, daysToComplete: 5)
     var taskArray: [ListItem] = []
-    
+    var delegate: UpdateTaskDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,21 +40,16 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    @IBAction func addItem(_ sender: Any) {
+        self.delegate!.addItem(ListItem(taskTitle: "Task", priority: .high, daysToComplete: 2))
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch taskArray.isEmpty {
-        case false:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         
-            cell.textLabel?.text = taskArray[indexPath.row].taskTitle
+            cell.textLabel?.text = taskArray.isEmpty ? "" : taskArray[indexPath.row].taskTitle
         
             return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "listEmpty", for: indexPath)
-            
-            cell.textLabel?.text = "No Tasks"
-            
-            return cell
-        }
     }
 }
 

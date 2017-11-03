@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="-306" y="134"/>
         </scene>
-        <!--Tasks-->
+        <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TaskViewController" customModule="taskApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,7 +124,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tasks" id="htt-M0-6Cw"/>
+                    <navigationItem key="navigationItem" title="Title" id="rJb-Vs-g41">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dtd-vh-h6f">
+                            <connections>
+                                <action selector="addItem:" destination="BYZ-38-t0r" id="3HG-8v-nbE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="BG6-G7-0ED" id="W7d-V9-0zc"/>
                     </connections>
